@@ -9,22 +9,22 @@ class ChatBar extends StatelessWidget implements PreferredSizeWidget {
   final String username;
   final Widget status;
   final double height;
-  final Gradient gradient;
-  final Color color;
+  final Gradient? gradient;
+  final Color? color;
   final Color backbuttoncolor;
-  final IconButton backbutton;
+  final IconButton? backbutton;
   final List<Widget> actions;
   final int actionspacer;
-  final TextStyle usernamestyle;
-  final TextStyle statusstyle;
-  final String lastseen;
-  final Function onprofileimagetap;
+  final TextStyle? usernamestyle;
+  final TextStyle? statusstyle;
+  final String? lastseen;
+  final Function? onprofileimagetap;
 
   @override
   Size get preferredSize => Size.fromHeight(height);
 
   ChatBar(
-      {Key key,
+      {Key? key,
       this.onprofileimagetap,
       this.gradient,
       this.lastseen,
@@ -35,10 +35,10 @@ class ChatBar extends StatelessWidget implements PreferredSizeWidget {
       this.statusstyle,
       this.actionspacer = 1,
       this.height = 70,
-      @required this.username,
-      @required this.actions,
-      @required this.profilePic,
-      @required this.status})
+      required this.username,
+      required this.actions,
+      required this.profilePic,
+      required this.status})
       : assert(profilePic != null, 'profile pic should not be null'),
         assert(status != null, 'status should not be null'),
         super(key: key);
@@ -57,7 +57,7 @@ class ChatBar extends StatelessWidget implements PreferredSizeWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
           backbutton != null
-              ? backbutton
+              ? backbutton!
               : BackButton(
                   color: backbuttoncolor,
                 ),
@@ -65,7 +65,7 @@ class ChatBar extends StatelessWidget implements PreferredSizeWidget {
             child: ClipRRect(
                 borderRadius: new BorderRadius.circular(30.0),
                 child: profilePic),
-            onTap: onprofileimagetap,
+            onTap: onprofileimagetap as void Function()?,
           ),
           SizedBox(
             width: 7.0,
